@@ -6,10 +6,10 @@
 
     <!-- Protect the map component of the application using application signature -->
     <permission
-        android:name="in.wptrafficanalyzer.locationsearchdialogv2.permission.MAPS_RECEIVE"
+        android:name="com.bus.andraft.permission.MAPS_RECEIVE"
         android:protectionLevel="signature" />
     <!-- Allows to receive map -->
-    <uses-permission android:name="in.wptrafficanalyzer.locationsearchdialogv2.permission.MAPS_RECEIVE" />
+    <uses-permission android:name="com.bus.andraft.permission.MAPS_RECEIVE" />
 
     <uses-sdk
         android:minSdkVersion="8"
@@ -73,7 +73,7 @@
         </activity>
          <provider
             android:name=".PlaceProvider"
-            android:authorities="in.wptrafficanalyzer.locationsearchdialogv2.PlaceProvider"
+            android:authorities="com.bus.andraft.PlaceProvider"
             android:exported="false" />
  
 

@@ -27,7 +27,6 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.searchgeo.andraft.PlaceProvider;
 import com.statica.andraft.GeoConstants;
 
 public class MainActivity extends FragmentActivity implements LoaderCallbacks<Cursor>{

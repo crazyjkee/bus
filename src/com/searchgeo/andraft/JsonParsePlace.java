@@ -8,7 +8,11 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.util.Log;
+
 public class JsonParsePlace {
+	
+	private String status;
 
 	/** Receives a JSONObject and returns a list */
     public List<HashMap<String,String>> parse(JSONObject jObject){
@@ -17,11 +21,15 @@ public class JsonParsePlace {
         try {
             /** Retrieves all the elements in the 'places' array */
             jPlaces = jObject.getJSONArray("predictions");
+            status = jObject.getString("status");
+            Log.d("myLogs","JsonParsePlace:"+jObject.getString("status")+" getstatus:"+status);
+            
+            
         } catch (JSONException e) {
             e.printStackTrace();
         }
         /** Invoking getPlaces with the array of json object
-        * where each json object represent a place
+        * where each json object represent a placeжа
         */
         return getPlaces(jPlaces);
     }
@@ -54,7 +62,8 @@ public class JsonParsePlace {
         String id="";
         String reference="";
         String description="";
- 
+       
+
         try {
  
             description = jPlace.getString("description");
@@ -70,4 +79,8 @@ public class JsonParsePlace {
         }
         return place;
     }
+
+	public String getStatus() {
+		return status;
+	}
 }
