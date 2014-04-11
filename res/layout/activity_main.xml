@@ -1,58 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
-    <TextView
-        android:id="@+id/label"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="Type here:" >
-    </TextView>
- 
-    <EditText
-        android:id="@+id/entry"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/label"
-        android:background="@android:drawable/editbox_background" >
-    </EditText>
-
-    <Button
-        android:id="@+id/ok"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/entry"
-        android:layout_marginLeft="10dip"
-        android:onClick="OnPressOk"
-        android:text="OK" >
-    </Button>
-
-    <Button
-        android:id="@+id/cancel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/ok"
-        android:layout_toLeftOf="@+id/ok"
-        android:onClick="OnPressCancel"
-        android:text="Cancel" >
-    </Button>
-
-    
-    <RelativeLayout
-        android:id="@+id/map_layout"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/cancel" >
 
         <fragment
- android:id="@+id/map"
- class="com.google.android.gms.maps.SupportMapFragment"
- android:layout_width="match_parent"
- android:layout_height="match_parent">
-</fragment>
-    </RelativeLayout>
+            android:id="@+id/map"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            class="com.google.android.gms.maps.SupportMapFragment" >
+        </fragment>
+        
+        <LinearLayout
+        android:id="@+id/settings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#00796f6f"
+        android:layout_marginTop="10dip"
+        android:layout_marginRight="10dip"
+        android:layout_gravity="top|right"
+        android:orientation="horizontal" >
 
-</RelativeLayout>
+        <ImageView
+            android:id="@+id/search"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dip"
+            android:layout_marginBottom="10dip"
+            android:layout_marginLeft="10dip"
+            android:layout_marginRight="10dip"
+            android:src="@android:drawable/ic_search_category_default"
+            android:onClick="onSearchClick"
+            android:gravity="right" />
+
+    </LinearLayout>
+
+</FrameLayout>

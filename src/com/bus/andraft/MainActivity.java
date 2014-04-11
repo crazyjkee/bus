@@ -11,7 +11,6 @@ import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
 import android.util.Log;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
@@ -32,10 +31,8 @@ import com.statica.andraft.GeoConstants;
 public class MainActivity extends FragmentActivity implements LoaderCallbacks<Cursor>{
 	SupportMapFragment mapFragment;
 	GoogleMap map;
-	TextView tv;
-	String image_str;
-	EditText secret;
 	SharedPreferenceSaver sharedPreferenceSaver;
+
 
 	final String TAG = "myLogs";
 	private ILastLocationFinder lastLocationFinder;
@@ -60,6 +57,7 @@ public class MainActivity extends FragmentActivity implements LoaderCallbacks<Cu
 		init();
 		handleIntent(getIntent());
 	}
+	
 
 	 private void handleIntent(Intent intent){
 	        if(intent.getAction().equals(Intent.ACTION_SEARCH)){
@@ -87,18 +85,11 @@ public class MainActivity extends FragmentActivity implements LoaderCallbacks<Cu
 	protected void onResume() {
 		super.onResume();
 	}
-
-
-
-	public void OnPressOk(View view) {
-		Log.d("myLogs", "OK");
-		// this.startService(new Intent(this, Services.class));
-
+	
+	public void onSearchClick(View view){
+		 onSearchRequested();
 	}
 
-	public void OnPressCancel(View view) {
-		Log.d("myLogs", "Cancel");
-	}
 
 	 @Override
 	    protected void onNewIntent(Intent intent) {
