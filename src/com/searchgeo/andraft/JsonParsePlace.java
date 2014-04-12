@@ -8,8 +8,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.util.Log;
-
 public class JsonParsePlace {
 	
 	private String status;
@@ -22,7 +20,7 @@ public class JsonParsePlace {
             /** Retrieves all the elements in the 'places' array */
             jPlaces = jObject.getJSONArray("predictions");
             status = jObject.getString("status");
-            Log.d("myLogs","JsonParsePlace:"+jObject.getString("status")+" getstatus:"+status);
+           
             
             
         } catch (JSONException e) {

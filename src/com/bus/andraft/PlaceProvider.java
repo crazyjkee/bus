@@ -11,13 +11,8 @@ import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.List;
 
-import org.apache.http.client.entity.UrlEncodedFormEntity;
-import org.apache.http.client.utils.URLEncodedUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import com.searchgeo.andraft.JsonParsePlace;
-import com.searchgeo.andraft.PlaceDetailParser;
 
 import android.app.SearchManager;
 import android.content.ContentProvider;
@@ -27,6 +22,9 @@ import android.database.Cursor;
 import android.database.MatrixCursor;
 import android.net.Uri;
 import android.util.Log;
+
+import com.searchgeo.andraft.JsonParsePlace;
+import com.searchgeo.andraft.PlaceDetailParser;
 
 public class PlaceProvider extends ContentProvider {
 
@@ -84,7 +82,7 @@ public class PlaceProvider extends ContentProvider {
 
 		switch (mUriMatcher.match(uri)) {
 		case SEARCH:
-			Log.d("myLogs","SEARCH");
+			
 			// Defining a cursor object with columns description, lat and lng
 			mCursor = new MatrixCursor(new String[] { "description", "lat",
 					"lng" });
@@ -96,7 +94,7 @@ public class PlaceProvider extends ContentProvider {
 			detailsParser = new PlaceDetailParser();
 
 			// Get Places from Google Places API
-			Log.d("myLogs", "selectionArgs:" + selectionArgs);
+			
 			jsonString = getPlaces(selectionArgs);
 			try {
 				// Parse the places ( JSON => List )
@@ -136,7 +134,7 @@ public class PlaceProvider extends ContentProvider {
 			break;
 
 		case SUGGESTIONS:
-Log.d("myLogs","SUGGESTIONS");
+
 			// Defining a cursor object with columns id, SUGGEST_COLUMN_TEXT_1,
 			// SUGGEST_COLUMN_INTENT_EXTRA_DATA
 			mCursor = new MatrixCursor(new String[] { "_id",
@@ -148,7 +146,7 @@ Log.d("myLogs","SUGGESTIONS");
 
 			// Get Places from Google Places API
 			jsonString = getPlaces(selectionArgs);
-			Log.d("myLogs", "jsonString:" + jsonString);
+			
 			establish = false;
 			
 
@@ -170,6 +168,7 @@ Log.d("myLogs","SUGGESTIONS");
 					// Adding place details to cursor
 					mCursor.addRow(new String[] { Integer.toString(i),
 							hMap.get("description"), hMap.get("reference") });
+					
 				}
 			} catch (JSONException e) {
 				// TODO Auto-generated catch block
@@ -269,7 +268,7 @@ Log.d("myLogs","SUGGESTIONS");
 			br.close();
 
 		} catch (Exception e) {
-			Log.d("Exception while downloading url", e.toString());
+			
 		} finally {
 			iStream.close();
 			urlConnection.disconnect();
@@ -294,13 +293,13 @@ Log.d("myLogs","SUGGESTIONS");
 		// Building the url to the web service
 		String url = "https://maps.googleapis.com/maps/api/place/details/"
 				+ output + "?" + parameters;
-		Log.d("myLogs", "URL:" + url);
+		
 
 		return url;
 	}
 
 	private String getPlacesUrl(String qry) {
-Log.d("myLogs","QRY"+" "+qry);
+
 		try {
 			qry = "input=" + URLEncoder.encode(qry, "UTF-8");
 		} catch (UnsupportedEncodingException e1) {
@@ -309,12 +308,12 @@ Log.d("myLogs","QRY"+" "+qry);
 		// Sensor enabled
 		String sensor = "sensor=false";
 String types="";
-Log.d("myLogs","establish:"+establish);
+
 		if(establish)
 			types = "types=establishment";
 		else
 			types = "types=geocode";
-Log.d("myLogs","types:"+types);
+
 
 		// Building the parameters to the web service
 		String parameters = qry + "&" + types + "&" + sensor + "&" + mKey;
@@ -324,7 +323,7 @@ Log.d("myLogs","types:"+types);
 		// Building the url to the web service
 		String url = "https://maps.googleapis.com/maps/api/place/autocomplete/"
 				+ output + "?" + parameters;
-		Log.d("myLogs","URL2:"+url);
+		
 		return url;
 	}
 
@@ -336,7 +335,7 @@ Log.d("myLogs","types:"+types);
 			// Fetching the data from web service in background
 			data = downloadUrl(url);
 		} catch (Exception e) {
-			Log.d("Background Task", e.toString());
+		
 		}
 		return data;
 	}

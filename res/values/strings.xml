@@ -6,11 +6,5 @@
     <string name="hello_world">Hello world!</string>
     <string name="search_hint">Search Places</string>
     <string name="search_settings">Search Places</string>
-   <string-array name="operating_systems">
-        <item >Android</item>
-        <item >iPhone</item>
-        <item >Windows Mobile</item>
-    </string-array>
-        <string name="drawer_open">Open Drawer</string>
-    <string name="drawer_close">Close Drawer</string>
+
 </resources>

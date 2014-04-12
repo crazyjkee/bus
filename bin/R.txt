@@ -4,7 +4,6 @@ int anim abc_slide_in_bottom 0x7f040002
 int anim abc_slide_in_top 0x7f040003
 int anim abc_slide_out_bottom 0x7f040004
 int anim abc_slide_out_top 0x7f040005
-int array operating_systems 0x7f0d0000
 int attr actionBarDivider 0x7f010020
 int attr actionBarItemBackground 0x7f010021
 int attr actionBarSize 0x7f01001f
@@ -304,7 +303,7 @@ int id action_context_bar 0x7f070020
 int id action_menu_divider 0x7f070019
 int id action_menu_presenter 0x7f07001a
 int id action_mode_close_button 0x7f070027
-int id action_search 0x7f070042
+int id action_search 0x7f070044
 int id activity_chooser_view_content 0x7f070028
 int id always 0x7f07000f
 int id beginning 0x7f070014
@@ -327,6 +326,7 @@ int id image 0x7f07002a
 int id listMode 0x7f070005
 int id list_item 0x7f07002c
 int id map 0x7f07003f
+int id menu 0x7f070043
 int id middle 0x7f070015
 int id never 0x7f07000d
 int id none 0x7f070000
@@ -346,7 +346,8 @@ int id search_mag_icon 0x7f070038
 int id search_plate 0x7f070039
 int id search_src_text 0x7f07003a
 int id search_voice_btn 0x7f07003e
-int id settings 0x7f070040
+int id settings_menu 0x7f070042
+int id settings_search 0x7f070040
 int id shortcut 0x7f070031
 int id showCustom 0x7f07000b
 int id showHome 0x7f070008
@@ -388,7 +389,7 @@ int layout abc_search_view 0x7f030016
 int layout abc_simple_decor 0x7f030017
 int layout activity_main 0x7f030018
 int layout support_simple_spinner_dropdown_item 0x7f030019
-int menu main 0x7f0e0000
+int menu main 0x7f0d0000
 int string abc_action_bar_home_description 0x7f08001c
 int string abc_action_bar_up_description 0x7f08001d
 int string abc_action_menu_overflow_description 0x7f08001e
@@ -430,8 +431,6 @@ int string common_google_play_services_update_text 0x7f080008
 int string common_google_play_services_update_title 0x7f080007
 int string common_signin_button_text 0x7f080012
 int string common_signin_button_text_long 0x7f080013
-int string drawer_close 0x7f08002e
-int string drawer_open 0x7f08002d
 int string hello_world 0x7f08002a
 int string location_client_powered_by_google 0x7f08001a
 int string search_hint 0x7f08002b

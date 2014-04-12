@@ -10,29 +10,59 @@
             android:layout_height="match_parent"
             class="com.google.android.gms.maps.SupportMapFragment" >
         </fragment>
-        
-        <LinearLayout
-        android:id="@+id/settings"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="#00796f6f"
-        android:layout_marginTop="10dip"
-        android:layout_marginRight="10dip"
-        android:layout_gravity="top|right"
-        android:orientation="horizontal" >
 
-        <ImageView
-            android:id="@+id/search"
+        <LinearLayout
+            android:id="@+id/settings_search"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dip"
-            android:layout_marginBottom="10dip"
-            android:layout_marginLeft="10dip"
             android:layout_marginRight="10dip"
-            android:src="@android:drawable/ic_search_category_default"
-            android:onClick="onSearchClick"
-            android:gravity="right" />
+            android:layout_marginTop="10dip"
+            android:layout_gravity="top|right"
+            android:background="#00796f6f"
+            android:orientation="horizontal" >
 
-    </LinearLayout>
+            <ImageView
+                android:id="@+id/search"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dip"
+                android:layout_marginLeft="10dip"
+                android:layout_marginRight="10dip"
+                android:layout_marginTop="10dip"
+                android:gravity="right"
+                android:onClick="onSearchClick"
+                android:src="@android:drawable/ic_search_category_default" />
+
+        </LinearLayout>
+        
+        
+        <LinearLayout
+            android:id="@+id/settings_menu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dip"
+            android:layout_marginTop="10dip"
+            android:layout_gravity="top|left"
+            android:background="#00796f6f"
+            android:orientation="horizontal" >
+
+            <ImageView
+                android:id="@+id/menu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dip"
+                android:layout_marginLeft="10dip"
+                android:layout_marginRight="10dip"
+                android:layout_marginTop="10dip"
+                android:gravity="right"
+                android:onClick="onMenuClick"
+                android:src="@android:drawable/ic_menu_more" />
+
+        </LinearLayout>
+        
+        
+        
+         
+        
 
 </FrameLayout>
