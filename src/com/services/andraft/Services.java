@@ -1,5 +1,7 @@
 package com.services.andraft;
 
+import java.util.ArrayList;
+
 import android.annotation.TargetApi;
 import android.app.PendingIntent;
 import android.app.Service;
@@ -18,19 +20,18 @@ import android.util.Log;
 
 import com.basegeo.andraft.ILastLocationFinder;
 import com.basegeo.andraft.LocationUpdateRequester;
-import com.bus.andraft.MainActivity;
 import com.getgeo.andraft.PlatformSpecificImplementationFactory;
+import com.google.android.gms.maps.model.LatLng;
 import com.receiver.andraft.LocationChangedReceiver;
-import com.receiver.andraft.PassiveLocationChangedReceiver;
 import com.statica.andraft.GeoConstants;
 
 public class Services extends Service {
 	LocationManager locationManager;
 	protected ILastLocationFinder lastLocationFinder;
 	private PendingIntent locationListenerPendingIntent;
-	//private PendingIntent locationListenerPassivePendingIntent;
 	private LocationUpdateRequester locationUpdateRequester;
 	private Criteria criteria;
+	private ArrayList<LatLng> ar;
 
 	@Override
 	public void onCreate() {
@@ -40,7 +41,7 @@ public class Services extends Service {
 				activeIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
 		
-		Log.d("myLogs", "onCreate");
+		Log.d("myLogs", "onCreate service");
 
 		locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 		criteria = new Criteria();
@@ -65,8 +66,8 @@ public class Services extends Service {
 
 	private void updateWithNewLocation(Location location) {
 			try{
-				Log.d("myLogs", "Долгота:" + location.getLongitude() + " Широта:"
-					+ location.getLatitude());
+				Log.d("myLogs", "Широта:"
+					+ location.getLatitude()+" Долгота:" + location.getLongitude());
 			}catch(NullPointerException e){
 				Thread t = new Thread(new Runnable(){
 
@@ -119,6 +120,9 @@ public class Services extends Service {
 		public void onLocationChanged(Location l) {
 			Log.d("myLogs", "bestInactive Долгота:" + l.getLongitude()
 					+ " Широта:" + l.getLatitude());
+			for(LatLng latlng:GeoConstants.hm.values()){
+				Log.d("myLogs","LatLng:"+latlng.latitude+", "+latlng.longitude);
+			}
 		}
 
 		public void onProviderDisabled(String provider) {

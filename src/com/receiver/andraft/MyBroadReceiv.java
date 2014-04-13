@@ -7,6 +7,8 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.util.Log;
 
+import com.basegeo.andraft.SharedPreferenceSaver;
+import com.getgeo.andraft.PlatformSpecificImplementationFactory;
 import com.services.andraft.Services;
 import com.statica.andraft.Utils;
 
@@ -24,8 +26,8 @@ public class MyBroadReceiv extends BroadcastReceiver {
 		Log.d(LOG_TAG,boot+"");
 		if(boot){
 			Log.d("myLogs","boot=true");
-		//context.startService(new Intent(context,Services.class));}
+		context.startService(new Intent(context,Services.class));}
 		}
 	}
 
-}
+

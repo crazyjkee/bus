@@ -1,5 +1,9 @@
 package com.statica.andraft;
 
+import java.util.HashMap;
+
+import com.google.android.gms.maps.model.LatLng;
+
 import android.app.AlarmManager;
 
 public class GeoConstants {
@@ -73,5 +77,7 @@ public class GeoConstants {
 	  public static String CONSTRUCTED_LOCATION_PROVIDER = "CONSTRUCTED_LOCATION_PROVIDER";
 	  
 	  public static int CHECKIN_NOTIFICATION = 0;
+	  
+	  public static HashMap<String,LatLng> hm;
 	}
 

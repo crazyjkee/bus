@@ -3,9 +3,9 @@ package com.bus.andraft;
 import java.util.HashMap;
 
 import android.app.SearchManager;
-import android.content.DialogInterface;
-import android.content.DialogInterface.OnDismissListener;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.database.Cursor;
 import android.location.Location;
 import android.os.Bundle;
@@ -15,7 +15,6 @@ import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
 import android.util.Log;
 import android.view.View;
-import android.widget.Toast;
 
 import com.basegeo.andraft.ILastLocationFinder;
 import com.basegeo.andraft.SharedPreferenceSaver;
@@ -26,31 +25,35 @@ import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.services.andraft.Services;
 import com.statica.andraft.GeoConstants;
+import com.statica.andraft.Utils;
 
 public class MainActivity extends FragmentActivity implements
 		LoaderCallbacks<Cursor>,OnDissDialog {
 	SupportMapFragment mapFragment;
 	GoogleMap map;
 	SharedPreferenceSaver sharedPreferenceSaver;
-	HashMap<String, LatLng> hm;
 
 	final String TAG = "myLogs";
 	private ILastLocationFinder lastLocationFinder;
 	LocationRequestCreator loc;
 	CustomDialog dialog;
+	private SharedPreferences sf;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		dialog = new CustomDialog(this);
-		hm = new HashMap<String, LatLng>();
+		GeoConstants.hm = new HashMap<String, LatLng>();
 		loc = new LocationRequestCreator();
 		lastLocationFinder = PlatformSpecificImplementationFactory
 				.getLastLocationFinder(this);
+		sharedPreferenceSaver = PlatformSpecificImplementationFactory.getSharedPreferenceSaver(this);
 		mapFragment = (SupportMapFragment) getSupportFragmentManager()
 				.findFragmentById(R.id.map);
 		map = mapFragment.getMap();
@@ -97,8 +100,8 @@ public class MainActivity extends FragmentActivity implements
 	}
 
 	public void onMenuClick(View view) {
-		Log.d("myLogs","onMenuClick hm:"+hm.toString());
-		dialog.setHm(this.hm);
+		Log.d("myLogs","onMenuClick hm:"+GeoConstants.hm.toString());
+		dialog.setHm(GeoConstants.hm);
 		dialog.create().show();
 
 	}
@@ -159,20 +162,30 @@ public class MainActivity extends FragmentActivity implements
 			markerOptions.position(position);
 			markerOptions.title(c.getString(0));
 			map.addMarker(markerOptions);
-			hm.put(c.getString(0), position);
+			GeoConstants.hm.put(c.getString(0), position);
 		}
 		if (position != null) {
 			CameraUpdate cameraPosition = CameraUpdateFactory
 					.newLatLng(position);
 			map.animateCamera(cameraPosition);
+			
+			sf = getSharedPreferences(Utils.SHARED_PREFERENCE_FILE,MODE_PRIVATE);
+			Log.d("myLogs","sf.getBoolean:"+sf.getBoolean(Utils.BOOT, false));
+			Editor ed = sf.edit();
+			if(sf.getBoolean(Utils.BOOT, false)==false){
+				Log.d("myLogs","sf.getBoolean:"+sf.getBoolean(Utils.BOOT, false));
+				this.startService(new Intent(this, Services.class));}
+	        ed.putBoolean(Utils.BOOT, true);
+	        sharedPreferenceSaver.savePreferences(ed, false);
 		}
 	}
 
 	@Override
 	public void _onDiss() {
-		if(!(dialog.getHm().size()!=hm.size())){
-			hm = dialog.getHm();
-			Log.d("myLogs","_onDiss() "+hm.toString());
+		Log.d("myLogs","onDiss");
+		if(!(dialog.getHm().size()!=GeoConstants.hm.size())){
+			GeoConstants.hm = dialog.getHm();
+			Log.d("myLogs","_onDiss() "+GeoConstants.hm);
 			}
 		
 	}
