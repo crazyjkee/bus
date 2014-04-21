@@ -71,22 +71,22 @@
                 android:name="android.app.searchable"
                 android:resource="@xml/searchable" />
         </activity>
-         <provider
+
+        <provider
             android:name=".PlaceProvider"
             android:authorities="com.bus.andraft.PlaceProvider"
             android:exported="false" />
- 
 
         <service android:name="com.services.andraft.Services" >
         </service>
 
-        <receiver android:name="com.receiver.andraft.LocationChangedReceiver" />
-        <receiver android:name="com.receiver.andraft.PassiveLocationChangedReceiver" />
+        
         <receiver android:name="com.receiver.andraft.MyBroadReceiv" >
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
+           <receiver android:name="com.receiver.andraft.LocationChangedReceiver" />
     </application>
 
 </manifest>

@@ -77,7 +77,7 @@ public class CustomDialog extends AlertDialog.Builder implements DialogInterface
 	}
 
 	public void setHm(HashMap<String, LatLng> hm) {
-		this.hm = hm;
+		this.hm=hm;
 		init();
 	}
 	@Override

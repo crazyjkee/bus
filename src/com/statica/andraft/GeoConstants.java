@@ -78,6 +78,6 @@ public class GeoConstants {
 	  
 	  public static int CHECKIN_NOTIFICATION = 0;
 	  
-	  public static HashMap<String,LatLng> hm;
+	  public static HashMap<String,LatLng> hm = new HashMap<String,LatLng>();
 	}
 

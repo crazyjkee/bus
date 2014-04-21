@@ -53,6 +53,7 @@ public class GingerbreadLastLocationFinder implements ILastLocationFinder {
 
 	    List<String> matchingProviders = locationManager.getAllProviders();
 	    for (String provider: matchingProviders) {
+	    	
 	      Location location = locationManager.getLastKnownLocation(provider);
 	      if (location != null) {
 	        float accuracy = location.getAccuracy();
